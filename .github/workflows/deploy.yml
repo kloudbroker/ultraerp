@@ -4,7 +4,7 @@ name: Publish
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ version-15 ]
+    branches: [ uat ]
 
 
   # Allows you to run this workflow manually from the Actions tab
@@ -33,7 +33,7 @@ jobs:
           cd /root/erpnext
           docker compose exec -it backend rm -fr /home/frappe/frappe-bench/apps/erpnext
           docker compose exec -it rm -fr /home/frappe/frappe-bench/sites/apps.json
-          docker compose exec -it backend bench get-app erpnext --resolve-deps --branch version-15 https://github.com/kloudbroker/ultraerp
+          docker compose exec -it backend bench get-app erpnext --resolve-deps --branch uat https://github.com/kloudbroker/ultraerp
           docker compose exec -it backend bench migrate
           docker compose exec -it backend bench clear-website-cache
           docker compose exec -it backend bench clear-cache
