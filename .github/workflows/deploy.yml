@@ -30,6 +30,7 @@ jobs:
       - name: Deploy
         run: |
           ssh -o StrictHostKeyChecking=no root@${{ secrets.HOST }} "
+          cd /root/erpnext
           docker compose exec -it backend rm -fr /home/frappe/frappe-bench/apps/erpnext
           docker compose exec -it rm -fr /home/frappe/frappe-bench/sites/apps.json
           docker compose exec -it backend bench get-app erpnext --resolve-deps --branch version-15 https://github.com/kloudbroker/ultraerp
