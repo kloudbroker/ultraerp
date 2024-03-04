@@ -31,10 +31,10 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no root@${{ secrets.HOST }} "
           cd /root/erpnext
-          docker compose -f /root/erpnext/docker-compose.yml exec -it backend rm -fr /home/frappe/frappe-bench/apps/erpnext
-          docker compose -f /root/erpnext/docker-compose.yml exec -it rm -fr /home/frappe/frappe-bench/sites/apps.json
-          docker compose -f /root/erpnext/docker-compose.yml exec -it backend bench get-app erpnext --resolve-deps --branch uat https://github.com/kloudbroker/ultraerp
-          docker compose -f /root/erpnext/docker-compose.yml exec -it backend bench migrate
+          docker compose -f /root/erpnext-uat/docker-compose.yml exec -it backend rm -fr /home/frappe/frappe-bench/apps/erpnext
+          docker compose -f /root/erpnext-uat/docker-compose.yml exec -it rm -fr /home/frappe/frappe-bench/sites/apps.json
+          docker compose -f /root/erpnext-uat/docker-compose.yml exec -it backend bench get-app erpnext --resolve-deps --branch uat https://github.com/kloudbroker/ultraerp
+          docker compose -f /root/erpnext-uat/docker-compose.yml exec -it backend bench migrate
           docker compose /root/erpnext/docker-compose.yml exec -it backend bench clear-website-cache
           docker compose /root/erpnext/docker-compose.yml exec -it backend bench clear-cache
           docker compose /root/erpnext/docker-compose.yml exec -it backend bench version"
